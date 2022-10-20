@@ -1,14 +1,14 @@
 {
   "name": "pokegochi-be",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project04",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ashish Singh, Harry Philpotts, Dan Emsley",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
