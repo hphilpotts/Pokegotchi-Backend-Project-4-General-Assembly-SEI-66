@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const trainerSchema = mongoose.Schema({
     name: String,
     emailAddress: String,
+    
     pokegochi: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Pokegochi'

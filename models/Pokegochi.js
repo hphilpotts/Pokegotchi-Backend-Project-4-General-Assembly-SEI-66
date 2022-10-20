@@ -12,6 +12,11 @@ const pokegochiSchema = mongoose.Schema({
     trainer: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Trainer'
+    }],
+
+    battle: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Battle'
     }]
 
 }, 
@@ -20,4 +25,4 @@ const pokegochiSchema = mongoose.Schema({
 
 const Pokegochi = mongoose.model("Pokegochi", pokegochiSchema);
 
-module.exports = {Article};
+module.exports = {Pokegochi};
