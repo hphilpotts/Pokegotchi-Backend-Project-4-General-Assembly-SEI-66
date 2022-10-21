@@ -5,7 +5,7 @@ const express = require('express');
 require('dotenv').config();
 
 // Require Connect Flash
-const flash = require('connect-flash');
+// const flash = require('connect-flash');
 
 // Require Mongoose
 const mongoose = require('mongoose');
@@ -17,7 +17,7 @@ const PORT = process.env.PORT;
 const app = express();
 
 // Using Connect Flash
-app.use(flash());
+// app.use(flash());
 
 // Look for all static files in public folder
 // (CSS, JS, Images, Videos, Audio files)
@@ -35,16 +35,16 @@ app.use(express.static("public"));
 // app.use(expressLayouts);
 
 // Express Session and Passport
-let session = require('express-session');
-let passport = require('./helper/ppConfig');
-const { use } = require('./helper/ppConfig');
+// let session = require('express-session');
+// let passport = require('./helper/ppConfig');
+// const { use } = require('./helper/ppConfig');
 
-app.use(session({
-    secret: process.env.SECRET,
-    saveUninitialized: true,
-    resave: false,
-    cookie: {maxAge: 3600000}
-}))
+// app.use(session({
+//     secret: process.env.SECRET,
+//     saveUninitialized: true,
+//     resave: false,
+//     cookie: {maxAge: 3600000}
+// }))
 
 // Initialze passport and passport session
 // app.use(passport.initialize());
