@@ -1,8 +1,11 @@
 const {Pokegochi} = require("../models/Pokegochi");
 const {Trainer} = require("../models/Trainer");
+const axios = require('axios');
+
 
 const moment = require('moment');
 
+// ! ORIGINAL GET METHOD FROM PREVIOUS WORK:
 // HTTP GET - Load Pokegochi From
 // exports.pokegochi_create_get = (req, res) => {
 
@@ -15,9 +18,22 @@ const moment = require('moment');
 //     })
 // }
 
-// HTTP GET - Load Pokegochi From
-exports.pokegochi_create_get = (req, res) => {
 
+// ! ATTEMPTING WITH AXIOS - NO RESULT IN CONSOLE
+axios ({
+    method: 'get',
+    url: 'https://pokeapi.glitch.me/v1/pokemon/1/',
+})
+.then(response => {
+    console.log(response.data.name);
+})
+.catch(error => {
+    console.log(error);
+});
+
+
+
+exports.pokegochi_create_get = (req, res) => {
 
         User.find = () => {
             const promises = [];
@@ -38,9 +54,6 @@ exports.pokegochi_create_get = (req, res) => {
             });
         };
     }
-
-
-
 
 
 // HTTP POST - Pokegochi
@@ -77,9 +90,6 @@ exports.pokegochi_index_get = (req, res) => {
         console.log(err);
     })
 }
-
-
-
 
 
 
@@ -139,7 +149,7 @@ exports.pokegochi_update_put = (req, res) => {
 
 
 
-// ! CALLING ALL ORIGIN 151 POKEMON + ITERATING OVER THEM
+// ! CALLING ALL ORIGINAL 151 POKEMON + ITERATING OVER THEM
   
 // function fetchKantoPokemon(){
 //     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')  
@@ -161,7 +171,7 @@ exports.pokegochi_update_put = (req, res) => {
 
 
 
-   //FETCHES INDIVIDUAL POKEMON DATE FROM ABOVE.
+   //FETCHES INDIVIDUAL POKEMON DATA FROM ABOVE.
 //    function fetchPokemonData(pokemon){
 //     let url = pokemon.url // saves pokemon to a url (Ex: https://pokeapi.co/api/v2/pokemon/1/)
 //       fetch(url)
@@ -199,10 +209,4 @@ exports.pokegochi_update_put = (req, res) => {
     //         })
     //     }
 
-    // TO PROVIDE BETTER IMAGE OF POKEMON FROM POKEMON API VERSION 1 
-        // function createPokeImage(pokeID, containerDiv){
-        //     let pokeImage = document.createElement('img')
-        //     pokeImage.srcset =    `https://cdn.traction.one/pokedex/pokemon/${pokeID}.png`
-        //     containerDiv.append(pokeImage);
-        //   }
-        
+
