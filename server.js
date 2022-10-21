@@ -7,7 +7,7 @@ const express = require('express');
 require('dotenv').config();
 
 // Require Connect Flash
-const flash = require('connect-flash');
+// const flash = require('connect-flash');
 
 // Require Mongoose
 const mongoose = require('mongoose');

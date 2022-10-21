@@ -1,4 +1,5 @@
-const express= require('express');
+const express = require('express');
+const axios = require('axios');
 
 const methodOverride = require('method-override');
 
@@ -22,4 +23,3 @@ router.get("/pokegochi/edit", pokegochiCntrl.pokegochi_edit_get);
 router.put("/pokegochi/update", pokegochiCntrl.pokegochi_update_put);
 
 module.exports = router;
-
