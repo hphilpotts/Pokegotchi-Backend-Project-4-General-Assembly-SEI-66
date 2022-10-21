@@ -9,9 +9,9 @@ const pokegochiSchema = mongoose.Schema({
     playLevel: Number,
 
 
-    trainer: [{
+    user: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Trainer'
+        ref: 'User'
     }],
 
     battle: [{

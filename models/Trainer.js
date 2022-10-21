@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
-// Schema For Trainer
-const trainerSchema = mongoose.Schema({
-    name: String,
-    emailAddress: String,
-    
-    pokegochi: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pokegochi'
-    }]
-},
-{timestamps: true})
+// // Schema For Trainer
+// const trainerSchema = mongoose.Schema({
+//     name: String,
+//     emailAddress: String,
 
-const Trainer = mongoose.model("Trainer", authorSchema);
+//     pokegochi: [{
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: 'Pokegochi'
+//     }]
+// },
+// {timestamps: true})
 
-module.exports = {Trainer};
+// const Trainer = mongoose.model("Trainer", authorSchema);
+
+// module.exports = {Trainer};
