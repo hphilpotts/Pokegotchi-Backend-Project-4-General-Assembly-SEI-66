@@ -165,6 +165,7 @@ function fetchKantoPokemon(){
     // TO PROVIDE BETTER IMAGE OF POKEMON FROM POKEMON API VERSION 1 
         function createPokeImage(pokeID, containerDiv){
             let pokeImage = document.createElement('img')
-            pokeImage.srcset =    `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`
+            pokeImage.srcset =    `https://cdn.traction.one/pokedex/pokemon/${pokeID}.png`
             containerDiv.append(pokeImage);
           }
+
