@@ -2,6 +2,7 @@
 
 // Require Express
 const express = require('express');
+const bodyParser = require ('body-parser')
 
 // Require and Initialze dotenv
 require('dotenv').config();
@@ -17,6 +18,12 @@ const PORT = process.env.PORT;
 
 // Initialze Express
 const app = express();
+
+// ? will this fix it?
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // Using Connect Flash
 // app.use(flash());
@@ -68,7 +75,7 @@ app.use('/', authRouter);
 app.set("view engine", "ejs");
 
 // Database Connection
-mongoose.connect(process.env.MongoDBURL,
+mongoose.connect(process.env.MONGODBURL,
     { useNewUrlParser: true, useUnifiedTopology: true },
     () => {
         console.log("MongoDB connected!!!")

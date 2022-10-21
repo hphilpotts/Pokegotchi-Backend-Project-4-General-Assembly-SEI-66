@@ -22,8 +22,8 @@ exports.auth_signup_get = (req, res) => {
 //     let user = new User(req.body);
 exports.auth_signup_post = (req, res) => {
     let user = new User(req.body);
-    console.log(user)
-    
+    console.log(req.body);
+
     user.save()
     .then(()=> {
         res.redirect("/")
