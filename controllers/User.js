@@ -1,7 +1,7 @@
 
-const {Trainer} = require("../models/Trainer");
+// const {Trainer} = require("../models/Trainer");
 const {Pokegochi} = require("../models/Pokegochi");
-
+const {User} = require("../models/")
 const moment = require('moment');
 
 // HTTP GET - Load Trainer From

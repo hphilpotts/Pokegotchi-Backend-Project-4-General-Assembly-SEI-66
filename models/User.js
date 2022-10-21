@@ -2,17 +2,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = mongoose.Schema({
-    firstName: {
+    
+    userName: {
         type: String,
         required: true,
-        minlength: [3, "First Name must be more than 3 characters"],
-        maxlength: [20, "First Name is too long"],
-    },
-    lastName: {
-        type: String,
-        required: true,
-        minlength: [3, "Last Name must be more than 3 characters"],
-        maxlength: [20, "Last Name is too long"],
+        lowercase: true,
+        unique: true,
     },
     emailAddress: {
         type: String,
@@ -23,7 +18,7 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: [6, "Your password is too weak..."]
+        minlength: [6, "Your password is too short"]
     }
 },
 {
@@ -31,11 +26,11 @@ const userSchema = mongoose.Schema({
 });
 
 
-userSchema.methods.verifyPassword = function(password) {
-    console.log("password from User: " + password);
-    console.log("password from Database: " + this.password);
-    return bcrypt.compareSync(password, this.password);
-}
+// userSchema.methods.verifyPassword = function(password) {
+//     console.log("password from User: " + password);
+//     console.log("password from Database: " + this.password);
+//     return bcrypt.compareSync(password, this.password);
+// }
 
 
 const User = mongoose.model("User", userSchema);

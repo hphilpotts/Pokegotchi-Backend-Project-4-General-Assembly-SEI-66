@@ -1,3 +1,5 @@
+//Backend 
+
 // Require Express
 const express = require('express');
 
@@ -17,53 +19,53 @@ const PORT = process.env.PORT;
 const app = express();
 
 // Using Connect Flash
-app.use(flash());
+// app.use(flash());
 
 // Look for all static files in public folder
 // (CSS, JS, Images, Videos, Audio files)
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 // Require express-ejs-layouts
-// const expressLayouts = require('express-ejs-layouts');
+const expressLayouts = require('express-ejs-layouts');
 
 // Import Routes
-// const authRouter = require('./routes/auth');
-// const trainerRouter = require('./routes/trainers');
+const authRouter = require('./routes/auth');
+// const userRouter = require('./routes/trainers');
 // const pokegochiRouter = require('./routes/pokegochi');
 
 // Look into views folder for the file named as layout.ejs
-// app.use(expressLayouts);
+app.use(expressLayouts);
 
 // Express Session and Passport
-let session = require('express-session');
-let passport = require('./helper/ppConfig');
-const { use } = require('./helper/ppConfig');
+// let session = require('express-session');
+// let passport = require('./helper/ppConfig');
+// const { use } = require('./helper/ppConfig');
 
-app.use(session({
-    secret: process.env.SECRET,
-    saveUninitialized: true,
-    resave: false,
-    cookie: {maxAge: 3600000}
-}))
+// app.use(session({
+//     secret: process.env.SECRET,
+//     saveUninitialized: true,
+//     resave: false,
+//     cookie: {maxAge: 3600000}
+// }))
 
 // Initialze passport and passport session
 // app.use(passport.initialize());
 // app.use(passport.session());
 
 // Sharing the information with all pages
-// app.use(function(req, res, next){
-//     res.locals.currentUser = req.user;
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user;
 //     res.locals.alerts = req.flash();
-//     next();
-// })
+    next();
+})
 
 // // Mount Routes
-// app.use('/', authRouter);
+app.use('/', authRouter);
 // app.use('/', trainerRouter);
 // app.use('/', pokegochiRouter);
 
 // NodeJS will look in a folder called views/ for all EJS related files.
-// app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 
 // Database Connection
 mongoose.connect(process.env.MongoDBURL,
@@ -78,7 +80,7 @@ app.listen(PORT, () => {
 })
 
 
-// Another Route
-app.get("/a", (req, res) => {
-    res.render("home/another");
+// Check root route is working
+app.get("/", (req, res) => {
+    res.render("layout");
 })

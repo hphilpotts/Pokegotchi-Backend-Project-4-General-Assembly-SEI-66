@@ -23,7 +23,6 @@ exports.pokegochi_create_post = (req, res) => {
     pokegochi.save()
     .then(() => {
 
-
         // M2MR
         req.body.trainer.forEach(trainer => {
             Trainer.findById(trainer, (error, trainer) => {
