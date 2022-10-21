@@ -1,5 +1,12 @@
 const router = require('express').Router();
 
+const express = require('express');
+
+router.use(express.json());
+
+
+
+
 const authCntrl = require("../controllers/auth");
 
 //Routes

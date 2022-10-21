@@ -22,10 +22,10 @@ exports.auth_signup_get = (req, res) => {
 //     let user = new User(req.body);
 exports.auth_signup_post = (req, res) => {
     let user = new User(req.body);
-
+    console.log(user)
+    
     user.save()
     .then(()=> {
-        console.log(user)
         res.redirect("/")
     })
     .catch((err)=> {

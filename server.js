@@ -81,6 +81,3 @@ app.listen(PORT, () => {
 
 
 // Check root route is working
-app.get("/", (req, res) => {
-    res.render("layout");
-})
