@@ -3,7 +3,7 @@ const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
 
 
-const moment = require('moment');
+// const moment = require('moment');
 
 // ! ORIGINAL GET METHOD FROM PREVIOUS WORK:
 // HTTP GET - Load Pokegochi From
@@ -20,40 +20,56 @@ const moment = require('moment');
 
 
 // ! ATTEMPTING WITH AXIOS - NO RESULT IN CONSOLE
+
+exports.pokegochi_create_get = (req, res) => {
+
 axios ({
     method: 'get',
     url: 'https://pokeapi.glitch.me/v1/pokemon/1/',
 })
 .then(response => {
-    console.log(response.data.name);
+    console.log(response.data[0].name);
 })
 .catch(error => {
     console.log(error);
 });
+}
 
-
-
+// ! ANOTHER ATTEMPT
 exports.pokegochi_create_get = (req, res) => {
 
-        User.find = () => {
-            const promises = [];
-            for (let i = 1; i <= 150; i++) {
-                const url = `https://pokeapi.glitch.me/v1/pokemon/${i}`;
-                promises.push(fetch(url).then((res) => res.json()));
-            }
-            Promise.all(promises).then((results) => {
-                const pokemon = results.map((result) => ({
-                    name: result.name,
-                    species: result.species,
-                    image: result.sprite,
-                    type: result.types.map((type) => type.type.name).join(', '),
-                    id: result.id
-                }));
-                displayPokemon(pokemon);
-                console.log(pokemon)
-            });
-        };
+    axios.get('https://pokeapi.glitch.me/v1/pokemon/1')
+    .then(response => {
+            console.log(response.data[0].name);
+        }
+    )
+    .catch(error => {
+        console.log(error);
+    });
     }
+
+
+// exports.pokegochi_create_get = (req, res) => {
+
+//         User.find = () => {
+//             const promises = [];
+//             for (let i = 1; i <= 150; i++) {
+//                 const url = `https://pokeapi.glitch.me/v1/pokemon/${i}`;
+//                 promises.push(fetch(url).then((res) => res.json()));
+//             }
+//             Promise.all(promises).then((results) => {
+//                 const pokemon = results.map((result) => ({
+//                     name: result.name,
+//                     species: result.species,
+//                     image: result.sprite,
+//                     type: result.types.map((type) => type.type.name).join(', '),
+//                     id: result.id
+//                 }));
+//                 displayPokemon(pokemon);
+//                 console.log(pokemon)
+//             });
+//         };
+//     }
 
 
 // HTTP POST - Pokegochi
