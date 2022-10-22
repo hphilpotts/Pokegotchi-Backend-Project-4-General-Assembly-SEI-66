@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 
 const battleSchema = mongoose.Schema({
     name: String,
-    hp: Number,
-    age: Number,
-    cleanLevel: Number,
-    foodLevel: Number,
-    playLevel: Number,
-
 
     pokegochi: [{
         type: mongoose.Schema.Types.ObjectId,
