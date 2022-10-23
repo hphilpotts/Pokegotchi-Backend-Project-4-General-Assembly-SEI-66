@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const pokegochiSchema = mongoose.Schema({
+const pokegotchiSchema = mongoose.Schema({
     name: String,
     hp: Number,
     age: Number,
@@ -23,6 +23,6 @@ const pokegochiSchema = mongoose.Schema({
 { timestamps: true}
 );
 
-const Pokegochi = mongoose.model("Pokegochi", pokegochiSchema);
+const Pokegochi = mongoose.model("Pokegotchi", pokegotchiSchema);
 
-module.exports = {Pokegochi};
+module.exports = {Pokegotchi};

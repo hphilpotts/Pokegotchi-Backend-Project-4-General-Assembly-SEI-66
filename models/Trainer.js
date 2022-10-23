@@ -5,9 +5,9 @@
 //     name: String,
 //     emailAddress: String,
 
-//     pokegochi: [{
+//     pokegotchi: [{
 //         type: mongoose.Schema.Types.ObjectId,
-//         ref: 'Pokegochi'
+//         ref: 'Pokegotchi'
 //     }]
 // },
 // {timestamps: true})

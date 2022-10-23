@@ -1,6 +1,6 @@
 
 // const {Trainer} = require("../models/Trainer");
-const {Pokegochi} = require("../models/Pokegochi");
+const {Pokegotchi} = require("../models/Pokegotchi");
 const {User} = require("../models/")
 const moment = require('moment');
 
@@ -28,7 +28,7 @@ exports.trainer_create_post = (req, res) => {
 
 // HTTP GET - Trainer Index API
 exports.trainer_index_get = (req, res) => {
-    Trainer.find().populate('pokegochi')
+    Trainer.find().populate('pokegotchi')
     .then(trainers => {
         res.json({trainers: trainers})
     })
@@ -41,7 +41,7 @@ exports.trainer_index_get = (req, res) => {
 exports.trainer_show_get = (req, res) => {
     console.log(req.query.id);
 
-    Trainer.findById(req.query.id).populate('pokegochi')
+    Trainer.findById(req.query.id).populate('pokegotchi')
     .then(trainer => {
         res.render("trainer/detail", {trainer, moment}) 
     })
