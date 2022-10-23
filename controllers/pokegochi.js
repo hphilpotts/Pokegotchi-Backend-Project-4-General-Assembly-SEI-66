@@ -2,89 +2,20 @@ const {Pokegochi} = require("../models/Pokegochi");
 const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
 
-
 // const moment = require('moment');
 
-// ! ORIGINAL GET METHOD FROM PREVIOUS WORK:
 // HTTP GET - Load Pokegochi From
-// exports.pokegochi_create_get = (req, res) => {
-
-//     Trainer.find()
-//     .then((trainers) => {
-//         res.render("pokegochi/add", {trainers})
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
-// }
-
-
-// ! ATTEMPTING WITH AXIOS - NO RESULT IN CONSOLE
-
-exports.pokegochi_create_get = (req, res) => {
-
-axios ({
-    method: 'get',
-    url: 'https://pokeapi.glitch.me/v1/pokemon/1/',
-})
-.then(response => {
-    console.log(response.data[0].name);
-
-
-})
-.catch(error => {
-    console.log(error);
-});
-}
-
-
+// ! don't believe we'll need to iterate through all 151 as user will select the pokemon of their choice and we then just get that data?
 axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
-  .then((response) => {
-    console.log(response.data[0].name);
-    console.log(response.data[0].species);
-    console.log(response.data[0].sprite);
-
-
-
-  });
-
-// ! ANOTHER ATTEMPT
-exports.pokegochi_create_get = (req, res) => {
-
-    axios.get('https://pokeapi.glitch.me/v1/pokemon/1')
-    .then(response => {
-            console.log(response.data[0].name);
-        }
-    )
+    .then((response) => {
+        console.log(response.data[0].name);
+        console.log(response.data[0].species);
+        console.log(response.data[0].sprite);
+    })
     .catch(error => {
         console.log(error);
     });
-    }
-
-
-
-// exports.pokegochi_create_get = (req, res) => {
-
-//         User.find = () => {
-//             const promises = [];
-//             for (let i = 1; i <= 150; i++) {
-//                 const url = `https://pokeapi.glitch.me/v1/pokemon/${i}`;
-//                 promises.push(fetch(url).then((res) => res.json()));
-//             }
-//             Promise.all(promises).then((results) => {
-//                 const pokemon = results.map((result) => ({
-//                     name: result.name,
-//                     species: result.species,
-//                     image: result.sprite,
-//                     type: result.types.map((type) => type.type.name).join(', '),
-//                     id: result.id
-//                 }));
-//                 displayPokemon(pokemon);
-//                 console.log(pokemon)
-//             });
-//         };
-//     }
-
+    
 
 // HTTP POST - Pokegochi
 exports.pokegochi_create_post = (req, res) => {
@@ -177,66 +108,5 @@ exports.pokegochi_update_put = (req, res) => {
     })
 }
 
-
-
-// ! CALLING ALL ORIGINAL 151 POKEMON + ITERATING OVER THEM
-  
-// function fetchKantoPokemon(){
-//     fetch('https://pokeapi.co/api/v2/pokemon?limit=151')  
-//      .then(response => response.json())
-//      .then(function(allpokemon){
-//      allpokemon.results.forEach(function(pokemon){
-//        fetchPokemonData(pokemon); 
-//      })
-//     })
-//    }
-
-
-// ! OR USE V1 
-// const fetchKantoPokemon = () => {
-//     for (let i = 1; i <= 150; i++) {
-//         const url = `https://pokeapi.glitch.me/v1/pokemon/${i}`;
-//     }
-// }
-
-
-
-   //FETCHES INDIVIDUAL POKEMON DATA FROM ABOVE.
-//    function fetchPokemonData(pokemon){
-//     let url = pokemon.url // saves pokemon to a url (Ex: https://pokeapi.co/api/v2/pokemon/1/)
-//       fetch(url)
-//       .then(response => response.json())
-//       .then(function(pokeData){
-//       console.log(pokeData)
-//       })
-//     }
-
-    // EXTRACTS DATA FROM POKEDATA AND RENDERS AS HTML 
-    // // ! NEED TO PASS AS JSON?
-    // function renderPokemon(pokeData){
-    //     let allPokemonContainer = document.getElementById('poke-container');
-    //     let pokeContainer = document.createElement("div") //div will be used to hold the data/details for indiviual pokemon.{}
-    //     let pokeName = document.createElement('h4')
-    //     pokeName.innerText = pokeData.name
-    //     let pokeNumber = document.createElement('p')
-    //     pokeNumber.innerText = `#${pokeData.id}`
-    //     let pokeTypes = document.createElement('ul') 
-    //     //ul list will hold the pokemon types
-    //     createTypes(pokeData.types, pokeTypes) 
-    //     // helper function to go through the types array and create li tags for each one
-    //     pokeContainer.append(pokeName, pokeNumber, pokeTypes);   
-    //     //appending all details to the pokeContainer div
-    //     allPokemonContainer.appendChild(pokeContainer);       
-    //     //appending that pokeContainer div to the main div which will                                                             hold all the pokemon cards
-    //     }
-
-    // APPENDS DATA TO LIST
-    // function createTypes(types, ul){
-    //     types.forEach(function(type){
-    //     let typeLi = document.createElement('li');
-    //     typeLi.innerText = type['type']['name'];
-    //     ul.append(typeLi)
-    //         })
-    //     }
 
 
