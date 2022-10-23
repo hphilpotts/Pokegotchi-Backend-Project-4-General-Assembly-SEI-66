@@ -29,11 +29,24 @@ axios ({
 })
 .then(response => {
     console.log(response.data[0].name);
+
+
 })
 .catch(error => {
     console.log(error);
 });
 }
+
+
+axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
+  .then((response) => {
+    console.log(response.data[0].name);
+    console.log(response.data[0].species);
+    console.log(response.data[0].sprite);
+
+
+
+  });
 
 // ! ANOTHER ATTEMPT
 exports.pokegochi_create_get = (req, res) => {
@@ -47,6 +60,7 @@ exports.pokegochi_create_get = (req, res) => {
         console.log(error);
     });
     }
+
 
 
 // exports.pokegochi_create_get = (req, res) => {
