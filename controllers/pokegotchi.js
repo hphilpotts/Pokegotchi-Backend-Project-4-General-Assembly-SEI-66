@@ -1,11 +1,12 @@
-const {Pokegochi} = require("../models/Pokegochi");
+const {pokegotchi} = require("../models/Pokegotchi");
 const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
 
 // const moment = require('moment');
 
-// HTTP GET - Load Pokegochi From
-// ! don't believe we'll need to iterate through all 151 as user will select the pokemon of their choice and we then just get that data?
+// HTTP GET - Load pokegotchi From
+// ! don't believe we'll need to iterate through all 151 as user
+// ! will select the pokemon of their choice and we then just get that data?
 axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
     .then((response) => {
         console.log(response.data[0].name);
@@ -17,22 +18,22 @@ axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
     });
     
 
-// HTTP POST - Pokegochi
+// HTTP POST - pokegotchi
 exports.pokegochi_create_post = (req, res) => {
 
-    let pokegochi = new Pokegochi(req.body);
+    let pokegotchi = new pokegotchi(req.body);
 
-    pokegochi.save()
+    pokegotchi.save()
     .then(() => {
 
         // M2MR
         req.body.trainer.forEach(trainer => {
             Trainer.findById(trainer, (error, trainer) => {
-                trainer.pokegochi.push(pokegochi);
+                trainer.pokegotchi.push(pokegotchi);
                 trainer.save();
             })
         });
-        res.redirect("/pokegochi/index");
+        res.redirect("/pokegotchi/index");
     })
     .catch((err) => {
         console.log(err);
@@ -41,11 +42,11 @@ exports.pokegochi_create_post = (req, res) => {
 }
 
 
-// HTTP GET - Pokegochi Index API
+// HTTP GET - pokegotchi Index API
 exports.pokegochi_index_get = (req, res) => {
-    Pokegochi.find().populate('trainer')
+    pokegotchi.find().populate('trainer')
     .then(pokegochis => {
-        res.render("pokegochi/index", {pokegochis: pokegochis, moment})
+        res.render("pokegotchi/index", {pokegochis: pokegochis, moment})
     })
     .catch(err => {
         console.log(err);
@@ -54,14 +55,14 @@ exports.pokegochi_index_get = (req, res) => {
 
 
 
-// HTTP GET - Pokegochi By Id
+// HTTP GET - pokegotchi By Id
 exports.pokegochi_show_get = (req, res) => {
     console.log(req.query.id);
 
-    // Find the pokegochi by ID
-    Pokegochi.findById(req.query.id).populate('trainer')
-    .then(pokegochi => {
-        res.render("pokegochi/detail", {pokegochi, moment})
+    // Find the pokegotchi by ID
+    pokegotchi.findById(req.query.id).populate('trainer')
+    .then(pokegotchi => {
+        res.render("pokegotchi/detail", {pokegotchi, moment})
     })
     .catch(err => {
         console.log(err)
@@ -73,9 +74,9 @@ exports.pokegochi_show_get = (req, res) => {
 exports.pokegochi_delete_get = (req, res) => {
     console.log(req.query.id);
 
-    Pokegochi.findByIdAndDelete(req.query.id)
+    pokegotchi.findByIdAndDelete(req.query.id)
     .then(() => {
-        res.redirect("/pokegochi/index");
+        res.redirect("/pokegotchi/index");
     })
     .catch(err => {
         console.log(err);
@@ -84,24 +85,24 @@ exports.pokegochi_delete_get = (req, res) => {
 
 // Edit API
 
-// HTTP GET - Load Pokegochi Edit Form
+// HTTP GET - Load pokegotchi Edit Form
 exports.pokegochi_edit_get = (req, res) => {
-    Pokegochi.findById(req.query.id)
-    .then((pokegochi) => {
-        res.render("pokegochi/edit", {pokegochi})
+    pokegotchi.findById(req.query.id)
+    .then((pokegotchi) => {
+        res.render("pokegotchi/edit", {pokegotchi})
     })
     .catch(err => {
         console.log(err);
     })
 }
 
-// HTTP PUT - Pokegochi Update
+// HTTP PUT - pokegotchi Update
 exports.pokegochi_update_put = (req, res) => {
     console.log(req.body.id);
 
-    Pokegochi.findByIdAndUpdate(req.body.id, req.body)
+    pokegotchi.findByIdAndUpdate(req.body.id, req.body)
     .then(() => {
-        res.redirect("/pokegochi/index");
+        res.redirect("/pokegotchi/index");
     })
     .catch(err => {
         console.log(err)
