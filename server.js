@@ -38,7 +38,7 @@ const expressLayouts = require('express-ejs-layouts');
 // Import Routes
 const authRouter = require('./routes/auth');
 // const userRouter = require('./routes/trainers');
-// const pokegochiRouter = require('./routes/pokegochi');
+const pokegotchiRouter = require('./routes/pokegotchi'); // uncommented, corrected spelling error
 
 // Look into views folder for the file named as layout.ejs
 app.use(expressLayouts);
@@ -69,7 +69,7 @@ app.use(function(req, res, next){
 // // Mount Routes
 app.use('/', authRouter);
 // app.use('/', trainerRouter);
-// app.use('/', pokegochiRouter);
+app.use('/', pokegotchiRouter); //uncommented, corrected PG spelling
 
 // NodeJS will look in a folder called views/ for all EJS related files.
 app.set("view engine", "ejs");
