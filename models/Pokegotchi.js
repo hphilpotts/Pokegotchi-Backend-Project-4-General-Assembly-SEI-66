@@ -23,6 +23,6 @@ const pokegotchiSchema = mongoose.Schema({
 { timestamps: true}
 );
 
-const Pokegochi = mongoose.model("Pokegotchi", pokegotchiSchema);
+const Pokegotchi = mongoose.model("Pokegotchi", pokegotchiSchema); // corrected spelling of PG
 
 module.exports = {Pokegotchi};

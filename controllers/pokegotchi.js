@@ -1,6 +1,7 @@
-const {pokegotchi} = require("../models/Pokegotchi");
+const {Pokegotchi} = require("../models/Pokegotchi");
 const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
+const ObjectId = require('mongoose').Types.ObjectId;
 
 // const moment = require('moment');
 
@@ -43,13 +44,24 @@ exports.pokegochi_create_post = (req, res) => {
 
 
 // HTTP GET - pokegotchi Index API
-exports.pokegochi_index_get = (req, res) => {
-    pokegotchi.find().populate('trainer')
-    .then(pokegochis => {
-        res.render("pokegotchi/index", {pokegochis: pokegochis, moment})
+// exports.pokegochi_index_get = (req, res) => {
+//     pokegotchi.find().populate('trainer')
+//     .then(pokegochis => {
+//         res.render("pokegotchi/index", {pokegochis: pokegochis, moment})
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
+// }
+
+// * rewritten for JSON, working in Postman:
+exports.pokegotchi_index_get = (req, res) => {
+    Pokegotchi.find()
+    .then(pokegotchi => {
+        res.json({pokegotchi})
     })
     .catch(err => {
-        console.log(err);
+        console.log(err)
     })
 }
 
@@ -111,3 +123,22 @@ exports.pokegochi_update_put = (req, res) => {
 
 
 
+// GET Pokegotchi by User Id
+    // * not yet tested, may also duplicate functionality from above?
+exports.pokegotchi_byUserId_get = (req, res) => {
+    console.log("passed in: " + req.query.id)
+    // Pokegotchi.find({ name: req.query.id}) // * works in postman when key:id value:Testmon is passed in as Query Param
+    Pokegotchi.find({ User: req.query.id }) // ! ...does not work any which way.
+        // ? I think the issue is possibly because I manually created a pokegotchi?
+        // TODO : test once create pokegotchi funcitonality works
+        // ? if not:
+        // TODO : find an alternative way of searching
+
+    .then(pokegotchi => {
+        console.log(pokegotchi)
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
