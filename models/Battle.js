@@ -6,6 +6,11 @@ const battleSchema = mongoose.Schema({
     pokegotchi: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Pokegotchi'
+    }],
+
+    opponent: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'opponent'
     }]
 
 }, 
