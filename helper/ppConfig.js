@@ -1,5 +1,8 @@
-// const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+
+// requring pasport local strategy
+const LocalStrategy = require('passport-local').Strategy;
+
 const User = require("../models/User");
 
 // Serialze User
@@ -30,4 +33,4 @@ passport.use(new LocalStrategy({
     }
   ));
 
-// module.exports = passport;
+module.exports = passport;
