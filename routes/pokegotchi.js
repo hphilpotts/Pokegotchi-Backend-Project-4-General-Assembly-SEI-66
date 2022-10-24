@@ -15,7 +15,7 @@ const IsLoggedIn = require('../helper/isLoggedIn');
 
 // Routes
 router.get("/pokegotchi/add", IsLoggedIn, pokegotchiCntrl.pokegotchi_create_get);
-router.post("/pokegotchi/add", pokegotchiCntrl.pokegotchi_create_post);
+ router.post("/pokegotchi/add", /*isLoggedIn,*/ pokegotchiCntrl.pokegotchi_create_post);
 router.get("/pokegotchi/index", pokegotchiCntrl.pokegotchi_index_get);
 router.get("/pokegotchi/detail", pokegotchiCntrl.pokegotchi_show_get);
 router.get("/pokegotchi/delete", pokegotchiCntrl.pokegotchi_delete_get);

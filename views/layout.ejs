@@ -8,20 +8,31 @@
 </head>
 <body>
 
+    Shared Header Layout from Layout page
 
     <div><h1><a href="/">PokeGotchi!</a></h1></div>
-    
+    <% if(currentUser) { %>
+        Hi <%= currentUser.userName %>
+    <% } else { %>
+        Hi, please signup/login
+    <% } %>
     <hr>
     
     <nav>
-        <a href="/auth/signin"  class="btn btn-outline-primary">Signin</a>
-        <a href="/auth/signup"  class="btn btn-outline-primary">Signup</a>
-        <a href="/auth/logout" class="btn btn-outline-primary">Logout</a>
+        <a href="/auth/signin">Signin</a>
+
+        <a href="/auth/signup">Signup</a>
+
+        <a href="/auth/logout">Logout</a>
     </nav>
+
+    <hr>
+
+    <%- body %>
 
     <br><br><hr><br>
 
- 
 
+ 
 </body>
 </html>

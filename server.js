@@ -44,20 +44,20 @@ const authRouter = require('./routes/auth');
 app.use(expressLayouts);
 
 // Express Session and Passport
-// let session = require('express-session');
-// let passport = require('./helper/ppConfig');
+let session = require('express-session');
+let passport = require('./helper/ppConfig');
 // const { use } = require('./helper/ppConfig');
 
-// app.use(session({
-//     secret: process.env.SECRET,
-//     saveUninitialized: true,
-//     resave: false,
-//     cookie: {maxAge: 3600000}
-// }))
+app.use(session({
+    secret: process.env.SECRET,
+    saveUninitialized: true,
+    resave: false,
+    cookie: {maxAge: 3600000}
+}))
 
 // Initialze passport and passport session
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Sharing the information with all pages
 app.use(function(req, res, next){

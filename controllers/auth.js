@@ -1,16 +1,14 @@
 const User = require("../models/User");
-// const jwt = require("jsonwebtoken")
 
-//let passport = require("../helper/ppConfig");
+// require jsonwebtoken 
+const jwt = require("jsonwebtoken")
 
-// const bcrypt = require('bcrypt');
-// const salt = 10;
+let passport = require("../helper/ppConfig");
 
-// root route
-// 
-exports.home_get = (req, res) => {
-    res.render("/")
-}
+//require bcrypt for hashing
+const bcrypt = require('bcrypt');
+const salt = 10;
+
 // ! SIGN UP ROUTES
 // HTTP GET - Signup Route - To load signup form
 exports.auth_signup_get = (req, res) => {
@@ -23,15 +21,26 @@ exports.auth_signup_get = (req, res) => {
 exports.auth_signup_post = (req, res) => {
     let user = new User(req.body);
     console.log(req.body);
+    
+    console.log(req.body.password)
+    // encrypting password in database
+    let hash = bcrypt.hashSync(req.body.password, salt);
+    console.log(hash);
+
+    user.password = hash;
 
     user.save()
     .then(()=> {
-        res.send("Successfully created new user")
+        // res.send("Successfully created new user")
+        res.json({"message": "User created sucessfully!"})
     })
     .catch((err)=> {
         console.log(err);
-        res.send("try again later")
+        // res.send("try again later")
+        res.json({"message": "error creating user, try again!"})
+
     })
+}
     // console.log(req.body.password);
     // let hash = bcrypt.hashSync(req.body.password, salt);
     // console.log(hash);
@@ -46,7 +55,7 @@ exports.auth_signup_post = (req, res) => {
     //     console.log(err);
     //     res.send("Please try again later.")
     // })
-}
+
     // user.save()
     // .then(() = {
     //     res.redirect("/");
@@ -74,6 +83,56 @@ exports.auth_signin_get = (req, res) => {
 }
 
 
+// exports.auth_signin_post = passport.authenticate('local', {
+//     successRedirect: "/",
+//     failureRedirect: "auth/signin"
+// })
+
+exports.auth_signin_post = async(req, res) => {
+    let {emailAddress, password} = req.body;
+    console.log(emailAddress)
+
+        try{
+        let user = await User.findOne({emailAddress}) //emailAddress: emailAddress
+        console.log(user)
+
+        if(!user)
+        {
+            return res.json({ "message": "User not found"}).status(400)
+        }
+
+        // Password Comparison
+        const isMatch = await bcrypt.compareSync(password, user.password)
+        console.log(password) //plain text password
+        console.log(user.password) //encrypted password from database
+
+        if(!isMatch){
+            return res.json({"message": "Password Not Matched"}).status(400)
+        }
+        
+        //JWT TOKEN
+        const payload = {
+            user:{
+                id: user._id,
+            
+            }
+        }
+
+        jwt.sign(
+            payload,
+            process.env.SECRET,
+            { expiresIn: 360000000000000},
+            (err, token) => {
+                if(err) throw err;
+                res.json({token}).status(200)         
+             }
+        )
+    }
+    catch(error){
+        console.log(error)
+        res.json({"message": "you are not logged in!"}).status(400)
+    }
+}
 
 
 // HTTP POST - Signin Route - To post the data for authentication
@@ -126,9 +185,10 @@ exports.auth_signin_get = (req, res) => {
 
 // HTTP GET - Logout Route
 exports.auth_logout_get = (req, res) => {
+    // Invalidates the session
    req.logout(function(err) {
     if(err) { return next(err);}
-    req.flash("success", "You are logged out successfully")
-    res.redirect("/auth/signin");
+    console.log("you've logged out")
+    res.redirect("/");
    }) 
 }
