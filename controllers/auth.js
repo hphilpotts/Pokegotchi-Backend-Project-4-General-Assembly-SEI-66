@@ -59,6 +59,7 @@ exports.auth_signin_post = async(req, res) => {
         const payload = {
             user:{
                 id: user._id,
+                username: user.userName
             }
         }
         jwt.sign(

@@ -1,5 +1,5 @@
 const {Pokegotchi} = require("../models/Pokegotchi");
-const {Trainer} = require("../models/Trainer");
+// const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -27,7 +27,7 @@ exports.pokegochi_create_post = (req, res) => {
     pokegotchi.save()
     .then(() => {
 
-        // M2MR
+        M2MR
         req.body.trainer.forEach(trainer => {
             Trainer.findById(trainer, (error, trainer) => {
                 trainer.pokegotchi.push(pokegotchi);
