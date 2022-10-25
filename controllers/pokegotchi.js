@@ -8,31 +8,39 @@ const ObjectId = require('mongoose').Types.ObjectId;
 // HTTP GET - load Pokegotchi - currently randomly generates 
 // Apply isLoggedin to this route, associate pokegotchi with signed in user 
 exports.user_pokegotchi_load = (req, res) => {
-    function getRandomInt
-    axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
-        .then((response) => {
-            // console.log(response);
-            // console.log(response.data)
-            let pokeId = response.data[0]
-            console.log(pokeId)
-            let newPokegotchi = new Pokegotchi({
-                name: pokeId.name,
-                pokedex: pokeId.number,
-                description: pokeId.description,
-                hp: 10,
-                age: 0,
-                cleanLevel: 10,
-                foodLevel: 10,
-                playLevel: 10,
-            })
-            newPokegotchi.save((err, user) => {
-                if(err) {
-                    console.log("failed to save new pokegotchi")
-                } else {
-                    console.log(newPokegotchi)
-                }
-              }); 
-            });
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+      };
+
+    let randomisedPokeId = getRandomIntInclusive(1,151);
+    console.log(randomisedPokeId);
+
+    // axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
+    //     .then((response) => {
+    //         // console.log(response);
+    //         // console.log(response.data)
+    //         let pokeId = response.data[0]
+    //         console.log(pokeId)
+    //         let newPokegotchi = new Pokegotchi({
+    //             name: pokeId.name,
+    //             pokedex: pokeId.number,
+    //             description: pokeId.description,
+    //             hp: 10,
+    //             age: 0,
+    //             cleanLevel: 10,
+    //             foodLevel: 10,
+    //             playLevel: 10,
+    //         })
+    //         newPokegotchi.save((err, user) => {
+    //             if(err) {
+    //                 console.log("failed to save new pokegotchi")
+    //             } else {
+    //                 console.log(newPokegotchi)
+    //             }
+    //           }); 
+    //         });
             
           //console.log(response.data[0].species);
          //console.log(response.data[0].sprite);
