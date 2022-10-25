@@ -1,9 +1,8 @@
 const { User } = require('../models/User');
-const { Pokegotchi } = require('../models/Pokegotchi')
 
 // -- CREATE:
 
-    // N/A for User, see auth.js!
+    // N/A for user controller: see auth.js!
 
 // -- READ:
 
