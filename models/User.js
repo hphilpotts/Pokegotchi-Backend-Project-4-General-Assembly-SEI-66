@@ -21,7 +21,11 @@ const userSchema = mongoose.Schema({
         required: true,
         minlength: [6, "Your password is too short"],
         unique: false,
-    }
+    },
+    pokegotchi: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Pokegotchi'
+    }],
 },
 {
     timestamps: true

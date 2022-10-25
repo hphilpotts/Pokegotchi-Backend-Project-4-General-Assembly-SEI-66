@@ -7,7 +7,11 @@ const pokegotchiSchema = mongoose.Schema({
     cleanLevel: Number,
     foodLevel: Number,
     playLevel: Number,
-
+    
+    attacks: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Attacks'
+    }],
 
     user: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -25,4 +29,4 @@ const pokegotchiSchema = mongoose.Schema({
 
 const Pokegotchi = mongoose.model("Pokegotchi", pokegotchiSchema); // corrected spelling of PG
 
-module.exports = {Pokegotchi};
+module.exports = Pokegotchi;

@@ -69,7 +69,7 @@ app.use(function(req, res, next){
 // // Mount Routes
 app.use('/', authRouter);
 // app.use('/', trainerRouter);
-app.use('/', pokegotchiRouter); //uncommented, corrected PG spelling
+// app.use('/', pokegotchiRouter); //uncommented, corrected PG spelling
 
 // NodeJS will look in a folder called views/ for all EJS related files.
 app.set("view engine", "ejs");
