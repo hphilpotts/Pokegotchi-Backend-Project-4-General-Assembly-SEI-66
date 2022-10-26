@@ -1,7 +1,7 @@
 const Pokegotchi = require("../models/Pokegotchi");
 // const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
-const ObjectId = require('mongoose').Types.ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId
 
 // const moment = require('moment');
 
@@ -183,13 +183,11 @@ exports.user_pokegotchi_load = (req, res) => {
 // }
 
 
-
 // GET Pokegotchi by User Id
 exports.pokegotchi_byUserId_get = (req, res) => {
-    // console.log("passed in: " + req.query.id)
-    Pokegotchi.find({ User: req.query.id })
+    Pokegotchi.find({user: req.query.id})
+
     .then(pokegotchi => {
-        // console.log(pokegotchi)
         res.json({pokegotchi})
     })
     .catch(err => {
