@@ -17,7 +17,7 @@ const pokegotchiSchema = mongoose.Schema({
     // ? could/should we add element at a later date to allow for responsive themeing?
 
     user: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.Mixed, // ! changed this to allow API to work but may not be a safe Type ... ?
         ref: 'User'
     }],
 

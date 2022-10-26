@@ -1,5 +1,7 @@
 const  User = require('../models/User');
 
+const mongoose = require('mongoose')
+
 // -- CREATE:
 
     // N/A for user controller: see auth.js!
@@ -19,7 +21,10 @@ exports.user_index_get = (req, res) => {
 
 // HTTP GET - User Detail by Id:
 exports.user_detail_get = (req, res) => {
-    console.log('finding user');
+    console.log('finding user...');
+    console.log(req.query.id)
+    console.log(typeof req.query.id)
+    console.log(mongoose.Types.ObjectId.isValid(req.query.id))
     User.findById(req.query.id)
     .then(user => {
         res.json({user});
