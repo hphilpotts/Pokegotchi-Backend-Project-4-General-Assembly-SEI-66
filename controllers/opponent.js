@@ -12,14 +12,18 @@ const ObjectId = require('mongoose').Types.ObjectId;
 // 
 
 //Load Opponent
-// axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
-//     .then((response) => {
-//         console.log(response.data[0].name);
-//         console.log(response.data[0].species);
-//         console.log(response.data[0].sprite);
-//     })
-//     .catch(error => {
-//         console.log(error);
-//     });
+exports.load_battle_opponent = (req, res) => {
+
+    axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
+        .then((response) => {
+            console.log(response.data[0].name);
+            console.log(response.data[0].species);
+            console.log(response.data[0].sprite);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    
+}
     
 //Save Attacks into Pokegotchi

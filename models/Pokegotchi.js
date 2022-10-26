@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const pokegotchiSchema = mongoose.Schema({
     name: String,
     pokedex: Number, // used for card image, useful for cross-api calls if we need
+    description: String,
     hp: Number,
     age: Number,
     cleanLevel: Number,
@@ -32,7 +33,8 @@ const pokegotchiSchema = mongoose.Schema({
 const Pokegotchi = mongoose.model("Pokegotchi", pokegotchiSchema); // corrected spelling of PG
 
 module.exports = Pokegotchi;
-module.exports = {Pokegotchi};
+
+// module.exports = {Pokegotchi};
 
 // ! manual insert into DB example:
 

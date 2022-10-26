@@ -89,4 +89,4 @@ app.listen(PORT, () => {
 })
 
 
-// Check root route is working
+console.log("testing Pokegotchi API")
