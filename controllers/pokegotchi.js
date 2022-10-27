@@ -145,15 +145,15 @@ exports.user_pokegotchi_load = (req, res) => {
 // }
 
 // * rewritten for JSON, working in Postman:
-// exports.pokegotchi_index_get = (req, res) => {
-//     Pokegotchi.find()
-//     .then(pokegotchi => {
-//         res.json({pokegotchi})
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
-// }
+exports.pokegotchi_index_get = (req, res) => {
+    Pokegotchi.find()
+    .then(pokegotchi => {
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
 
 
@@ -217,6 +217,35 @@ exports.pokegotchi_byUserId_get = (req, res) => {
     Pokegotchi.find({user: req.query.id})
 
     .then(pokegotchi => {
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+// PUT PokeGotchi Update Field API: 
+
+    // * NB: takes three Query params:
+        // id = user id, finds Pokegotchi on this basis
+        // field = field name to update (cleanLevel || foodLevel || playLevel || hp)
+        // value = value to update with
+        // http://localhost:3000/pokegotchi/update?id=<userId>&field=<fieldToUpdate>&value=<valueToUpdateWith>
+        // e.g.: Axios.put(http://localhost:3000/pokegotchi/update?id=635a6107cf5cb5becdc765f7&field=hp&value=100)
+
+exports.pokegotchi_update_put = (req, res) => {
+    const filter = { user: req.query.id };
+    // console.log(filter);
+    const field = req.query.field;
+    // console.log(field);
+    const update = { [field]: req.query.value }
+    // console.log(update);
+    Pokegotchi.findOneAndUpdate(filter, update, {
+        new: true
+    })
+    .then(pokegotchi => {
+        pokegotchi.save()
+        console.log('updated')
         res.json({pokegotchi})
     })
     .catch(err => {
