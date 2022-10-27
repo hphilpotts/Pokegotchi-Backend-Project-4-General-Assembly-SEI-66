@@ -13,6 +13,8 @@ require('dotenv').config();
 // Require Mongoose
 const mongoose = require('mongoose');
 
+// require path
+const path = require('path')
 // Port Configuration
 const PORT = process.env.PORT;
 
@@ -30,7 +32,7 @@ app.use(bodyParser.json())
 
 // Look for all static files in public folder
 // (CSS, JS, Images, Videos, Audio files)
-// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Require express-ejs-layouts
 const expressLayouts = require('express-ejs-layouts');
@@ -76,6 +78,10 @@ app.use('/', pokegotchiRouter);
 // NodeJS will look in a folder called views/ for all EJS related files.
 app.set("view engine", "ejs");
 
+// after build in be
+app.get("/*", function(req, res){
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 // Database Connection
 mongoose.connect(process.env.MONGODBURL,
     { useNewUrlParser: true, useUnifiedTopology: true },

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const pokegotchiSchema = mongoose.Schema({
     name: String,
     pokedex: Number, // used for card image, useful for cross-api calls if we need
-    description: String,
+    // description: String, tried to call from seperate API call but 
     hp: Number,
     age: Number,
     cleanLevel: Number,
@@ -12,7 +12,7 @@ const pokegotchiSchema = mongoose.Schema({
     
     attacks: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Attacks'
+        ref: 'Attack'
     }],
     // ? could/should we add element at a later date to allow for responsive themeing?
 
