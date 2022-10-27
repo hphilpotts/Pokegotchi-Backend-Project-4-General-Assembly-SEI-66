@@ -195,6 +195,15 @@ exports.pokegotchi_byUserId_get = (req, res) => {
     })
 }
 
+// PUT PokeGotchi Update Field API: 
+
+    // * NB: takes three Query params:
+        // id = user id, finds Pokegotchi on this basis
+        // field = field name to update (cleanLevel || foodLevel || playLevel || hp)
+        // value = value to update with
+        // http://localhost:3000/pokegotchi/update?id=<userId>&field=<fieldToUpdate>&value=<valueToUpdateWith>
+        // e.g.: Axios.put(http://localhost:3000/pokegotchi/update?id=635a6107cf5cb5becdc765f7&field=hp&value=100)
+
 exports.pokegotchi_update_put = (req, res) => {
     const filter = { user: req.query.id };
     console.log(filter);
