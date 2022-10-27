@@ -116,15 +116,15 @@ exports.user_pokegotchi_load = (req, res) => {
 // }
 
 // * rewritten for JSON, working in Postman:
-// exports.pokegotchi_index_get = (req, res) => {
-//     Pokegotchi.find()
-//     .then(pokegotchi => {
-//         res.json({pokegotchi})
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
-// }
+exports.pokegotchi_index_get = (req, res) => {
+    Pokegotchi.find()
+    .then(pokegotchi => {
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
 
 
@@ -188,6 +188,26 @@ exports.pokegotchi_byUserId_get = (req, res) => {
     Pokegotchi.find({user: req.query.id})
 
     .then(pokegotchi => {
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+exports.pokegotchi_update_put = (req, res) => {
+    const filter = { user: req.query.id };
+    console.log(filter);
+    const field = req.query.field;
+    console.log(field);
+    const update = { [field]: req.query.value }
+    console.log(update);
+    Pokegotchi.findOneAndUpdate(filter, update, {
+        new: true
+    })
+    .then(pokegotchi => {
+        pokegotchi.save()
+        console.log('updated')
         res.json({pokegotchi})
     })
     .catch(err => {
