@@ -1,11 +1,10 @@
 const Pokegotchi = require("../models/Pokegotchi");
-// const {Trainer} = require("../models/Trainer");
 const axios = require('axios');
-const ObjectId = require('mongoose').Types.ObjectId;
+const Attack = require("../models/Attack")
 
 // const moment = require('moment');
 
-// HTTP GET - load Pokegotchi - currently randomly generates 
+// HTTP GET - load Pokegotchi - currently randomly generates // FE will end up getting the User input, then send to BE, then BE will save into DB,
 // Apply isLoggedin to this route, associate pokegotchi with signed in user 
 exports.user_pokegotchi_load = (req, res) => {
     function getRandomIntInclusive(min, max) {
@@ -15,37 +14,73 @@ exports.user_pokegotchi_load = (req, res) => {
       };
 
     let randomisedPokeId = getRandomIntInclusive(1,151);
-    console.log(randomisedPokeId);
+    pokeId = randomisedPokeId.toString()
+    // console.log(randomisedPokeId)
+    //  when merge with Dan will need to send ID Number of Pokemon to BE
+    // let currentPokegotchiId; current pokeobj outside did not work
+    let attackArr = [];
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`)
+    .then((response) => {
+        let pokegotchiFeatures = response.data
+        let movesArr = pokegotchiFeatures.moves.slice(0, 5)
+        console.log(movesArr[0].move.name)
+        movesArr.forEach(move => {
+            let moveName = move.move.name
+            attackArr.push(moveName)
+            return attackArr
+        })
+        let newPokegotchi = new Pokegotchi({
+        name: pokegotchiFeatures.name,
+        pokedex: pokegotchiFeatures.id,
+        hp: 10,
+        age: 0,
+        cleanLevel: 10,
+        foodLevel: 10,
+        playLevel: 10,
+                })
+    newPokegotchi.save((err) => {
+            if(err) {
+                console.log("failed to save new pokegotchi")
+            } else {
+                console.log(attackArr)
+                let refId
+                Pokegotchi.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, pokegotchiDoc) {
+                console.log(pokegotchiDoc._id);
+                return refId = pokegotchiDoc._id
+                });
+                console.log(refId)
+                let index = refId.search(refId.length -1)
+                console.log(redId[index])
+            // attackArr.forEach((attack) => {
+            //     let newAttack = new Attack({
+            //         pokegotchi: 
+            //         name: attack,
+            //         Damage: 3
+            //     })
+            //     newAttack.save((err) => {
+            //         if(err) {
+            //             console.log("failed to save new Attack")
+            //         } else {
+            //             console.log(newAttack)
+            //         }
+            //     });
+            // })
+            }
+    })
+    })
 
-    // axios.get('https://pokeapi.glitch.me/v1/pokemon/1/')
-    //     .then((response) => {
-    //         // console.log(response);
-    //         // console.log(response.data)
-    //         let pokeId = response.data[0]
-    //         console.log(pokeId)
-    //         let newPokegotchi = new Pokegotchi({
-    //             name: pokeId.name,
-    //             pokedex: pokeId.number,
-    //             description: pokeId.description,
-    //             hp: 10,
-    //             age: 0,
-    //             cleanLevel: 10,
-    //             foodLevel: 10,
-    //             playLevel: 10,
-    //         })
-    //         newPokegotchi.save((err, user) => {
-    //             if(err) {
-    //                 console.log("failed to save new pokegotchi")
-    //             } else {
-    //                 console.log(newPokegotchi)
-    //             }
-    //           }); 
-    //         });
-            
-          //console.log(response.data[0].species);
-         //console.log(response.data[0].sprite);
+    // axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`)
+    // .then(() => {
+    //     let currentPet;
+    //     Pokegotchi.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, pokegotchiDoc) {
+    //         console.log(pokegotchiDoc._id);
+    //       });
+    
+ 
     res.render('pokegotchi/load')
 }
+
+
 // exports.user_pokegotchi_get= (req, res) => {
 //     let user = new User(req.body);
 //     console.log(req.body);
