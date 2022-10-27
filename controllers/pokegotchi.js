@@ -206,11 +206,11 @@ exports.pokegotchi_byUserId_get = (req, res) => {
 
 exports.pokegotchi_update_put = (req, res) => {
     const filter = { user: req.query.id };
-    console.log(filter);
+    // console.log(filter);
     const field = req.query.field;
-    console.log(field);
+    // console.log(field);
     const update = { [field]: req.query.value }
-    console.log(update);
+    // console.log(update);
     Pokegotchi.findOneAndUpdate(filter, update, {
         new: true
     })
