@@ -211,13 +211,11 @@ exports.user_pokegotchi_load = (req, res) => {
 // }
 
 
-
 // GET Pokegotchi by User Id
 exports.pokegotchi_byUserId_get = (req, res) => {
-    // console.log("passed in: " + req.query.id)
-    Pokegotchi.find({ User: req.query.id })
+    Pokegotchi.find({user: req.query.id})
+
     .then(pokegotchi => {
-        // console.log(pokegotchi)
         res.json({pokegotchi})
     })
     .catch(err => {
