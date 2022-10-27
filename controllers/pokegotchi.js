@@ -19,11 +19,12 @@ exports.user_pokegotchi_load = (req, res) => {
     //  when merge with Dan will need to send ID Number of Pokemon to BE
     // let currentPokegotchiId; current pokeobj outside did not work
     let attackArr = [];
+    // let newPokeObjId = "";
     axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`)
     .then((response) => {
         let pokegotchiFeatures = response.data
         let movesArr = pokegotchiFeatures.moves.slice(0, 5)
-        console.log(movesArr[0].move.name)
+        // console.log(movesArr[0].move.name) working to only access move name
         movesArr.forEach(move => {
             let moveName = move.move.name
             attackArr.push(moveName)
@@ -37,46 +38,38 @@ exports.user_pokegotchi_load = (req, res) => {
         cleanLevel: 10,
         foodLevel: 10,
         playLevel: 10,
-                })
-    newPokegotchi.save((err) => {
-            if(err) {
-                console.log("failed to save new pokegotchi")
-            } else {
-                console.log(attackArr)
-                let refId
-                Pokegotchi.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, pokegotchiDoc) {
-                console.log(pokegotchiDoc._id);
-                return refId = pokegotchiDoc._id
-                });
-                console.log(refId)
-                let index = refId.search(refId.length -1)
-                console.log(redId[index])
+        }); 
+        //saving newly created Pokegotchi
+        newPokegotchi.save()
+        console.log(newPokegotchi)
+        // let attackObjArr;
+        //create attack model and adding to attacks field
+        attackArr.forEach((attack) => {
+            let newAttack = new Attack({
+                    name: attack,
+                    Damage: 3
+            });   
+            newPokegotchi.attacks.push(newAttack)
+        })
+        console.log(newPokegotchi.attacks)
+    // Add attack Save here 
+                // Pokegotchi.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, pokegotchiDoc) {
+                //     //  console.log(pokegotchiDoc._id);
+                //     return newPokeObjId = pokegotchiDoc._id
+                // });
+                // console.log(newPokeObjId)
+                
+                // let idStart = newPokeObjId.indexOf('(')
+                // let idEnd = newPokeObjId.indexOf(')')
+                // let finalId = newPokeObjId.splice(idStart, idEnd)
+                // console.log(finalId)
             // attackArr.forEach((attack) => {
             //     let newAttack = new Attack({
             //         pokegotchi: 
             //         name: attack,
             //         Damage: 3
-            //     })
-            //     newAttack.save((err) => {
-            //         if(err) {
-            //             console.log("failed to save new Attack")
-            //         } else {
-            //             console.log(newAttack)
-            //         }
-            //     });
-            // })
-            }
+        
     })
-    })
-
-    // axios.get(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`)
-    // .then(() => {
-    //     let currentPet;
-    //     Pokegotchi.findOne({}, {}, { sort: { 'createdAt' : -1 } }, function(err, pokegotchiDoc) {
-    //         console.log(pokegotchiDoc._id);
-    //       });
-    
- 
     res.render('pokegotchi/load')
 }
 

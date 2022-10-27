@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 
 const attackSchema = mongoose.Schema({
 
-    pokegotchi: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pokegotchi'
-    }],
+    // pokegotchi: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Pokegotchi'
+    // }],
     name: String,
     Damage: Number,
 }, 
