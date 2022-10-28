@@ -6,9 +6,9 @@ const pokegotchiSchema = mongoose.Schema({
     // description: String, tried to call from seperate API call but 
     hp: Number,
     age: Number,
-    cleanLevel: Number,
-    foodLevel: Number,
-    playLevel: Number,
+    cleanLevel: { type: Number, min: [0, 'Negative values not allowed!'] },
+    foodLevel: { type: Number, min: [0, 'Negative values not allowed!'] },
+    playLevel: { type: Number, min: [0, 'Negative values not allowed!'] },
     
     attacks: [{
         type: mongoose.Schema.Types.ObjectId,

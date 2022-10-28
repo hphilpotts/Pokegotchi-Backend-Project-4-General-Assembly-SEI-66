@@ -252,3 +252,16 @@ exports.pokegotchi_update_put = (req, res) => {
         console.log(err)
     })
 }
+
+// PUT PokeGotchi Update All Levels
+exports.pokegotchi_decrementLevels_put = (req, res) => {
+    console.log('Executing decrement levels function...')
+    Pokegotchi.updateMany({}, { $inc: { foodLevel: -1, playLevel: -1, cleanLevel: -1} })
+    .then(pokegotchi => {
+        console.log('...levels reduced by 1')
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}

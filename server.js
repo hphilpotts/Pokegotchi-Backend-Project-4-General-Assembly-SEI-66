@@ -96,3 +96,49 @@ app.listen(PORT, () => {
 
 
 console.log("testing Pokegotchi API")
+
+// * -- Repeating Axios call in order to decrement all PokeGotchi levels every two hours:
+
+// Require Axios:
+const axios = require('axios');
+
+// Axios API call, call timer function recursively:
+function reduceLevels(){
+    axios.put(`http://localhost:3000/pokegotchi/decrementlevels`) // ? I'm not sure if this needs localhost or not?
+    .then(res => {
+        console.log('levels reduced by 1')
+        console.log(res) // should show something like:
+            // {
+            //     "pokegotchi": {
+            //         "acknowledged": true,
+            //         "modifiedCount": 34,
+            //         "upsertedId": null,
+            //         "upsertedCount": 0,
+            //         "matchedCount": 34
+            //     }
+            // }
+    }) 
+    .catch(err => {
+        console.log(err)
+    })
+    repeatTwelveTimesDaily();
+}
+
+// Timer function, executes the above function every two hours:
+function repeatTwelveTimesDaily() {
+    setTimeout(reduceLevels, 7200000);
+}
+
+// start off the loop:
+setTimeout(reduceLevels, 7200000)
+
+// -- Demonstration:
+
+// function logSomething(){
+//     console.log('something!');
+//     repeatMe();
+// }
+// function repeatMe() {
+//     setTimeout(logSomething, 1500);
+// }
+// setTimeout(logSomething, 1500);

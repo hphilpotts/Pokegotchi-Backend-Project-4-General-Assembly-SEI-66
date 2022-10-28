@@ -23,5 +23,6 @@ router.get("/pokegotchi/index", pokegotchiCntrl.pokegotchi_index_get);
 // router.get("/pokegotchi/edit", pokegotchiCntrl.pokegotchi_edit_get);
 router.put("/pokegotchi/update", pokegotchiCntrl.pokegotchi_update_put);
 router.get("/pokegotchi/findbyuser", pokegotchiCntrl.pokegotchi_byUserId_get); // find Pokegotchi from user id, not yet tested.
+router.put("/pokegotchi/decrementlevels", pokegotchiCntrl.pokegotchi_decrementLevels_put);
 
 module.exports = router;
