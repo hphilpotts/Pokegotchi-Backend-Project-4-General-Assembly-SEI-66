@@ -18,8 +18,7 @@ I focused primarily on the frontend of the application, creating and styling all
 [Deployment link](https://project04pokegotchi.herokuapp.com/)       
 <!-- TODO : fix or redeploy app so that this link works... -->
 [Google Doc README](https://docs.google.com/document/d/1t7EvTLFPsIKQwhfXQDHanu9GjoIeijHyInz7E7FQvCA/edit?usp=share_link)      
-[Frontend GitHub Repository](https://github.com/hphilpotts/Pokegotchi-Frontend-Project-4-General-Assembly-SEI-66/tree/harrydev/src/pokegotchi)
-[Backend GitHub Repository](https://github.com/hphilpotts/Pokegotchi-Backend-Project-4-General-Assembly-SEI-66)     
+[Frontend GitHub Repository](https://github.com/hphilpotts/Pokegotchi-Frontend-Project-4-General-Assembly-SEI-66/tree/harrydev/src/pokegotchi) | [Backend GitHub Repository](https://github.com/hphilpotts/Pokegotchi-Backend-Project-4-General-Assembly-SEI-66)     
 
 ## Getting started & Install:     
 
@@ -77,8 +76,26 @@ I enjoyed this project tremendously from start to finish (yes - even when things
 Our finished product is still rough around the edges and by no means where I'd wanted or hoped for it to be, but the journey getting there is the important thing. I'm still proud to show off the app, but prouder still to show off the code that I had written. Lastly, I'm glad that I took the opportunity to work with two great developers rather than working solo as I had initially intended: this project was a fantastic (albeit very intense!) way to finish off the course.        
 
 ## Successes and Challenges:         
+Aside from the learning and takeaways above, some key successes were:     
+
+- Using and getting to grips with _MUI_: whilst complicated at points, it is a powerful tool for styling React apps and a useful library to have experience with.     
+- Delivering a finished UI that aligned closely with the wireframe we had come up with. This simulated working to a brief (where in the past I might have had more creative leeway - and as such a more freeform approach to styling 'on the fly') which was again an important bit of experience.     
+- Implementing code that would automatically change database values in the background for as long as the server is running: this required getting into and understanding Mongoose and its documentation, as well as my first 'live' project-environment use of recursive functions. One of those moments where I was quietly(ish) shocked when the code actually worked!        
+- Overcoming synchronicity issues through using Session Storage: this was a solution that I came to organically, I was concerned it was a 'bodge' rather than a fix but was pleasantly surprised to find out that it was a quite standard approach.     
+- Achieving (near) mobile responsiveness through a 'mobile-first' approach: this of course created additional work, but is something I am motivated to deliver and believe results in a better end product.     
+- Navigating Git version control (pretty much) seamlessly. This was all thanks to learning and experience from previous projects and a more methodical approach - and crucially made for quite a nice change from the turbulent git merge conflicts seen before.     
+
+Challenges faced included:      
+- Delivering a finished project in the timeframe allowed. The presentation day was moved forward from a Monday to the Friday before, when combined with a perhaps overly-ambitious project and some delays in getting complex third-party APIs to work this meant that we handed in a project that did not have the scope we had hoped for when planning.     
+- Synchronising workload and avoiding overlap: at times there was some crossover and duplication, particularly where individual work continued 'out of hours'. We generally were able to manage this well though through comments in the code, slack updates and catchups at the start and end of each day.     
+- Fully understanding the role of `useEffect`: React Functional Components were only introduced to us a few days before starting the project, as such this RFC lifecycle proved a very steep learning curve. Ditto the use of dependencies with `useEffect`: this only really 'clicked' for me after the project when reviewing my code with a friend over a beer!             
+- Also, fully understanding 'asynchronous' as opposed to 'synchronous' programming: in particular how and when `async` should be used.      
+- Inadvertent loss of data when backend changes were made: I wasn't sure why my frontend had stopped working until I eventually checked the Compass GUI...               
+- React itself! Whilst very powerful and great fun to work with, it can be particularly 'picky' and often simply stops running (_of course this is great when it is preventing infinite loops_!), errors can come thick and fast, and VSCode sometimes struggles. A steep learning curve but one well worth overcoming!        
 
 ## Bugs & Issues:       
+- Heroku-hosted version of the App does not currently work.         
+- 
 
 ## Future Improvements:     
 
