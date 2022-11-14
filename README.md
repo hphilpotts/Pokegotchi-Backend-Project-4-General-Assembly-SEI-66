@@ -8,7 +8,7 @@
 
 This is a MERN stack web application - _Pokégotchi_ - built as group of three ([Ashish](https://github.com/EHCarr) (Team Leader), [Dan](https://github.com/Emsley1d) and I) in a timescale of one week, using linked frontend and backend applications: a Node.js backend, with Express framework and an Atlas hosted MongoDB database, linked to a React-based frontend application. This was Project 4 - the 'capstone' project - completed as part of General Assembly London's Software Engineering Immersive course. We presented a deployed version to my Instructional Team and fellow SEI cohort on 26/08/22.            
 
-<!-- TODO : screenshot here please -->
+![screenshot of app header and logo](readme/main.png)      
 
 This web app is a crossover between Tamagotchi and Pokémon, where users can select a Pokémon and then look after them: for example by healing them if injured in battle, or feeding them if they are hungry after not being fed for a while. The frontend app makes use of React's Single Page Application capability, meaning that the UI can render and update without the need for navigating between pages.     
 
@@ -23,7 +23,7 @@ I focused primarily on the frontend of the application, creating and styling all
 ## Getting started & Install:     
 
 <!-- TODO : find login details and add! -->
-To get started, please feel free to sign in as: // or sign up (your real email is not required!).       
+To get started, please feel free to sign in as: `test or sign up (your real email is not required!).       
 
 To contribute, please fork and clone the Frontend and Backend repositories respectively as above, running `npm install` in each respository in order to install required dependencies. Alternatively, please see `package.json` for a list of required dependencies.         
 
@@ -48,6 +48,8 @@ Please submit pull requests for any completed contributions.
 - Lucidchart ERD        
 - Figma wireframes      
 - Postman API testing       
+
+![postman screenshot](readme/postman.png)       
 
 ## Brief & Project aims:       
 The brief for this project was to use our knowledge of React combined with all earlier learning to build a full stack (MERN) web application (comprising linked frontend and backend applications), either solo or as a group, within the timescale of one week. This was our 'capstone' project: our most advanced project to date and the culmnination of our learning from the previous 11 weeks.        
@@ -78,6 +80,10 @@ Our finished product is still rough around the edges and by no means where I'd w
 ## Successes and Challenges:         
 Aside from the learning and takeaways above, some key successes were:     
 
+![console log screenshot](readme/consolelog.png)        
+_console.log()s in action!_     
+
+- `console.log()`s are (along with error messages) your best friend, and the best way of pinpointing what is happening where.       
 - Using and getting to grips with _MUI_: whilst complicated at points, it is a powerful tool for styling React apps and a useful library to have experience with.     
 - Delivering a finished UI that aligned closely with the wireframe we had come up with. This simulated working to a brief (where in the past I might have had more creative leeway - and as such a more freeform approach to styling 'on the fly') which was again an important bit of experience.     
 - Implementing code that would automatically change database values in the background for as long as the server is running: this required getting into and understanding Mongoose and its documentation, as well as my first 'live' project-environment use of recursive functions. One of those moments where I was quietly(ish) shocked when the code actually worked!        
@@ -125,17 +131,19 @@ And finally an ERD:
 
 <!-- TODO : add ERD -->     
 
-Lastly: Git repositories were set up along with React and Express app setup on the front- and back-end respectively, and MongoDB database set up - all ready for the next day.        
+Lastly: Git repositories were set up along with React and Express app setup on the front- and back-end respectively, and MongoDB database set up - all ready for the next day.    
 
 ### 21/10/22 | Day 1 | Production:                  
-Ashish and Dan started work on the backend whilst I started on the Frontend, first by installing _MUI_ and then adding logo and header components.
+Ashish and Dan started work on the backend whilst I started on the Frontend, first by installing _MUI_ and then adding logo and header components.      
+
+![screenshot of an early header](readme/early%20header.png)     
 
 I then worked on building the overall component structure and layout, focusing early on on mobile-optimisation (_which MUI is great for_!), and then implementing the `Card.js` component.      
 
 Lastly, I added routes/forms for signup and sign in, a 'confirm password' box, before preparing the front-end in readiness for JWT auth from the backend.       
 
 ![notes for backend devs](readme/prepforJWT.png)      
-_Frontend prepared for JWT auth from backend, notes for self and backend devs added in comments_        
+_Frontend prepared for JWT auth from backend, notes for self and backend devs if work continues over the weekend added in comments_        
 
 ### 24/10/22 | Day 2 | Production:                  
 
