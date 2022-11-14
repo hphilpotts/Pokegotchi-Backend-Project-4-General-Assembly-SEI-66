@@ -108,7 +108,48 @@ Challenges faced included:
 - Add background to `App.js` - potentially a dynamically changing one based upon Pokégotchi and/or actions taken.       
 - Include animation upon user actions, particularly when interacting with Pokégotchi.       
 
-## Production Process:    
+## Production Process:     
 
-### 18/08/22 | Day 0 | Brief issued:               
+### 20/10/22 | Day 0 | Brief issued, Planning, Setup:                  
+Immediately after being given the project brief, we were placed into individual breakout rooms on _Zoom_ and given the option of forming groups or, if preferred, working solo for the project. I joined up with Ashish and Dan as they were looking for a third group member and I had yet to work with them on a project. We decided that Ashish would be project lead as he had not yet had experience of this.      
+
+After initial discussion we settled on an idea and put together a Trello board:     
+
+<!-- TODO : add Trello board -->
+
+Before creating wireframes:     
+
+<!-- TODO : wireframe 1 thru however many needed. -->       
+
+And finally an ERD:     
+
+<!-- TODO : add ERD -->     
+
+Lastly: Git repositories were set up along with React and Express app setup on the front- and back-end respectively, and MongoDB database set up - all ready for the next day.        
+
+### 21/10/22 | Day 1 | Production:                  
+Ashish and Dan started work on the backend whilst I started on the Frontend, first by installing _MUI_ and then adding logo and header components.
+
+I then worked on building the overall component structure and layout, focusing early on on mobile-optimisation (_which MUI is great for_!), and then implementing the `Card.js` component.      
+
+Lastly, I added routes/forms for signup and sign in, a 'confirm password' box, before preparing the front-end in readiness for JWT auth from the backend.       
+
+![notes for backend devs](readme/prepforJWT.png)      
+_Frontend prepared for JWT auth from backend, notes for self and backend devs added in comments_        
+
+### 24/10/22 | Day 2 | Production:                  
+
+
+### 25/10/22 | Day 3 | Production:                  
+
+
+### 26/10/22 | Day 4 | Production:                  
+
+
+### 27/10/22 | Day 5 | Production:                  
+
+
+### 28/10/22 | Day 6 | Presentation:                
+
+           
 
