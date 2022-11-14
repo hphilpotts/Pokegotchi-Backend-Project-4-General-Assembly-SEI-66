@@ -90,14 +90,23 @@ Challenges faced included:
 - Synchronising workload and avoiding overlap: at times there was some crossover and duplication, particularly where individual work continued 'out of hours'. We generally were able to manage this well though through comments in the code, slack updates and catchups at the start and end of each day.     
 - Fully understanding the role of `useEffect`: React Functional Components were only introduced to us a few days before starting the project, as such this RFC lifecycle proved a very steep learning curve. Ditto the use of dependencies with `useEffect`: this only really 'clicked' for me after the project when reviewing my code with a friend over a beer!             
 - Also, fully understanding 'asynchronous' as opposed to 'synchronous' programming: in particular how and when `async` should be used.      
-- Inadvertent loss of data when backend changes were made: I wasn't sure why my frontend had stopped working until I eventually checked the Compass GUI...               
+- Inadvertent loss of data when backend changes were made: I wasn't sure why my frontend had started misbehaving until I eventually went checked the Compass GUI...               
 - React itself! Whilst very powerful and great fun to work with, it can be particularly 'picky' and often simply stops running (_of course this is great when it is preventing infinite loops_!), errors can come thick and fast, and VSCode sometimes struggles. A steep learning curve but one well worth overcoming!        
 
 ## Bugs & Issues:       
 - Heroku-hosted version of the App does not currently work.         
-- 
+- 'Select Pokégotchi' for new user not working: instead required Pokégotchi to be manually inserted into the database.      
+- Alert messages not yet implemented. For example: a failed sign in is not obvious to user.        
+- Status values can drop below 0 which then prevents any incrementation through User action.     
+- Some text overlap to the bottom of `Card.js` component on certain screens.        
+- Auth form text box outline overlaps text box title text.      
 
 ## Future Improvements:     
+- Implement fixes to the above: especially 'select Pokégotchi' and status value bug.        
+- Add the ability to change Pokégotchi.     
+- Include User-User interaction, for example, battles between Pokégotchi.       
+- Add background to `App.js` - potentially a dynamically changing one based upon Pokégotchi and/or actions taken.       
+- Include animation upon user actions, particularly when interacting with Pokégotchi.       
 
 ## Production Process:    
 
