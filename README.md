@@ -12,12 +12,13 @@ This is a MERN stack web application - _Pokégotchi_ - built as group of three (
 
 This web app is a crossover between Tamagotchi and Pokémon, where users can select a Pokémon and then look after them: for example by healing them if injured in battle, or feeding them if they are hungry after not being fed for a while. The frontend app makes use of React's Single Page Application capability, meaning that the UI can render and update without the need for navigating between pages.     
 
-I focused primarily on the frontend of the application, creating and styling all components with the exception of `Pokedex.js` and `Choice.js`. This includes signup/sign in, `User` CRUD operations, the Pokégotchi card and overall main App UI/UX. I also worked on the backend `User` APIs as well as some further backend APIs and functionality.        
+I focused primarily on the frontend of the application, creating and styling all components with the exception of `Pokedex.js` and `Choice.js`. This includes signup/sign in, frontend authentication, `User` CRUD operations, the Pokégotchi card and overall main App UI/UX. I also worked on the backend `User` APIs as well as some further backend APIs and functionality.        
 
 ## Links:       
 [Deployment link](https://project04pokegotchi.herokuapp.com/)       
 <!-- TODO : fix or redeploy app so that this link works... -->
-[Google Doc README](https://docs.google.com/document/d/1t7EvTLFPsIKQwhfXQDHanu9GjoIeijHyInz7E7FQvCA/edit?usp=share_link)      
+[Google Doc README](https://docs.google.com/document/d/1t7EvTLFPsIKQwhfXQDHanu9GjoIeijHyInz7E7FQvCA/edit?usp=share_link)            
+
 [Frontend GitHub Repository](https://github.com/hphilpotts/Pokegotchi-Frontend-Project-4-General-Assembly-SEI-66/tree/harrydev/src/pokegotchi) | [Backend GitHub Repository](https://github.com/hphilpotts/Pokegotchi-Backend-Project-4-General-Assembly-SEI-66)     
 
 ## Getting started & Install:     
@@ -113,6 +114,7 @@ Challenges faced included:
 - Include User-User interaction, for example, battles between Pokégotchi.       
 - Add background to `App.js` - potentially a dynamically changing one based upon Pokégotchi and/or actions taken.       
 - Include animation upon user actions, particularly when interacting with Pokégotchi.       
+- Refactoring required, especially in Card.js and its child components, and many comments / commented-out code sections need removing.      
 
 ## Production Process:     
 
@@ -140,6 +142,8 @@ Ashish and Dan started work on the backend whilst I started on the Frontend, fir
 
 I then worked on building the overall component structure and layout, focusing early on on mobile-optimisation (_which MUI is great for_!), and then implementing the `Card.js` component.      
 
+![card structure](readme/cardstructure.png)     
+
 Lastly, I added routes/forms for signup and sign in, a 'confirm password' box, before preparing the front-end in readiness for JWT auth from the backend.       
 
 ![notes for backend devs](readme/prepforJWT.png)      
@@ -147,17 +151,124 @@ _Frontend prepared for JWT auth from backend, notes for self and backend devs if
 
 ### 24/10/22 | Day 2 | Production:                  
 
+On the frontend, I worked on passing `userId` to the `Card` component, loading Pokégotchi images based on Pokedex number from the database, and general formatting. 
+
+This work included a fix using Session Storage where props (notably `userId` and `pG` for User and Pokégotchi respectively) were being lost on manual refresh:        
+
+![screenshot from App.js](readme/appjssessionstorage.png)       
+_App.js useEffect sets userId in Session Storage_       
+
+![screenshot from App.js](readme/appjssessionstorage2.png)      
+_findPG runs within useEffect, sets pG in Session Storage_
+
+![screenshot from Card.js](readme/cardjssessionstorage.png)     
+_Card.js retrieves pG from Session Storage_     
+
+On the backend, I worked on cleaning up some stray code that was causing issues, and wrote an first version of a GET Pokégotchi by User Id API:     
+
+```
+// GET Pokegotchi by User Id
+exports.pokegotchi_byUserId_get = (req, res) => {
+    console.log("passed in: " + req.query.id)
+    // Pokegotchi.find({ name: req.query.id}) // * works in postman when key:id value:Testmon is passed in as Query Param
+    Pokegotchi.find({ User: req.query.id }) // ! ...does not work any which way.
+    .then(pokegotchi => {
+        console.log(pokegotchi)
+        res.json({pokegotchi})
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+```
+
+Later fixed as:     
+
+![working GET PG detail by User ID API](readme/getpgdetailapi.png)      
+_The final (working!) version of the GET Pokégotchi by User Id API_     
 
 ### 25/10/22 | Day 3 | Production:                  
 
+I spent the first part of today working on styling and formatting, rolling out more consistent visuals across components, including use of `Template.js` for future use:        
+
+![Template.js screenshot](readme/tempatejs.png)     
+
+I then moved onto User READ operations, writing backend APIs and testing in Postman:     
+
+![GET user detail api](readme/getuserdetailapi.png)     
+_GET User detail API from controllers/users.js_     
+
+Before then implementing in the frontend:       
+
+![GET user call](readme/getuseraxioscall.png)       
+_Retrieving User Detail in User.js frontend component_      
+
+In `User.js` I was finding that props were not loading fast enough for the component to render correctly, I bypassed this by adding a `setTimeout` to `useEffect`, and then a loading spinner if the `isLoading` state is true:     
+
+![User.js useEffect](readme/useruseeffect.png)      
+_User.js useEffect with 1.5 timer_      
+
+![User.js loading spinner](readme/isloading.png)        
+_CircularProgress renders if (isLoading)_       
+
+I then moved onto wrinting APIs for the remaining User CRUD operations in the backend.      
+
+I also implemented a 'logged-in responsive' MUI-based dropdown menu in the header:     
+
+![MUI dropdown menu](readme/muimenu.png)        
+
+![MUI header menu code](readme/muimenucode.png)     
+_props.isAuth determines which menu loads - requires two menus rather than one menu that holds different MenuItems_     
 
 ### 26/10/22 | Day 4 | Production:                  
 
+Today I looked at authentication, signup and sign in on the frontend, as well as working on tidying up the UI and improving mobile responsiveness. I then moved onto implementing the remainder of User CRUD operations in the frontend:        
+
+![user READ UI](readme/userread.png)        
+_READ User component_       
+
+![user EDIT UI](readme/useredit.png)        
+_EDIT User component_       
+
+![user DELETE UI](readme/userdelete.png)        
+_DELETE User component with confirmation dialogue from MUI_     
+
+My work on the backend today was spent ironing out issues with my APIs, which required a somewhat clumsy fix within `models/Pokegotchi.js` where `user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]` was changed to `type: mongoose.Schema.Types.Mixed`.        
 
 ### 27/10/22 | Day 5 | Production:                  
 
+For the final day before the deadline, I worked on hunting bugs across the frontend, added a 404 page and worked further on styling across the app.     
+
+I also implemented interactions with the Pokégotchi, adding working buttons, a changing status message, and status update values:        
+
+![card with interactivity](readme/buttons.png)      
+_The card with working buttons: messages and status update upon interaction_        
+
+![screenshot from Buttons.js](readme/buttonscode.png)       
+_Code from Buttons.js_      
+
+![screenshot of Card.js button press](readme/cardjsbuttonpress.png)       
+_Switch statement - needs refactoring - that handles button press in Card.js_       
+
+![screenshot of feed and clean functions in card.js](readme/examplefunctions.png)       
+_Example functions for clean and feed - again, needs refactoring!_      
+
+In the backend, I worked on automatically decrementing Pokégotchi status levels in the background whilst the server is running. This was my favourite bit of code for the project and a great way to finish!        
+
+After poring over a lot of Mongoose documentation (which I must admit I find harder than lots of other documentations), I eventually came up with the following API in `controllers/pokegotchi.js`:         
+
+![screenshot of decrement all (PUT) API](readme/decremental.png)        
+_PUT API: works using an updateMany, set with no filter to target all Pokégotchi documents, which then increments multiple properties by -1_        
+
+I then wrote the following in `server.js` to execute an Axios request using the above API, within timed recursive functions. One of those moments where I was shocked it actually worked!       
+
+![server.js screenshot of recursive decrement API call](readme/serverrecursive.png)     
+_Functions called recursively on 2hr timeout, runs in the background as long as the server is running!_     
 
 ### 28/10/22 | Day 6 | Presentation:                
 
-           
+Again, I made a few slides showing key bits of code for the presentation. We had multiple deployment issues but were able to run a working version for the presentation. There were - and are - lots of bits that need improving or adding, but we were all rightly pleased with what we had produced. And, more importantly, we had fun and learned a huge amout in completing the project! A great way to end the course!     
 
+![screenshot of 404 page](readme/404page.png)       
+_Our Pokégotchi app 404 page!_          
+---
