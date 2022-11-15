@@ -123,15 +123,15 @@ Immediately after being given the project brief, we were placed into individual 
 
 After initial discussion we settled on an idea and put together a Trello board:     
 
-<!-- TODO : add Trello board -->
+![screenshot of Trello board](readme/trello.png)        
 
 Before creating wireframes:     
 
-<!-- TODO : wireframe 1 thru however many needed. -->       
+![screenshot of Figma wireframes](readme/wireframes.png)             
 
 And finally an ERD:     
 
-<!-- TODO : add ERD -->     
+![screenshot of Lucidchart ERD](readme/erd.png)      
 
 Lastly: Git repositories were set up along with React and Express app setup on the front- and back-end respectively, and MongoDB database set up - all ready for the next day.    
 
