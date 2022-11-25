@@ -81,12 +81,10 @@ app.set("view engine", "ejs");
 
 // after build in be
 app.get("/*", function(req, res){
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
-    // * attempting to bypass CORS error
-    .then(function (response) {
-        res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-        res.send(response.data);
-      })
+    // * Take 2 in attempting to resolve CORS errors:
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(response.data);
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 })
 // Database Connection
 mongoose.connect(process.env.MONGODBURL,
