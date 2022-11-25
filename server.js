@@ -70,9 +70,9 @@ app.use(function(req, res, next){
     next();
 })
 
-// * Take 3 : CORS error
+// * Take 5(6?) : CORS error
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://pokegotchi-frontend-project-4-general-assembly-sei-6-ikilf64by.vercel.app");
+    res.header("Access-Control-Allow-Origin", "https://pokegotchi-frontend-project-4-general-assembly-sei-6-ikilf64by.vercel.app");
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
@@ -81,6 +81,7 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Methods',
         'PUT, POST, GET, DELETE, OPTIONS'
     );
+    res.header('Access-Control-Allow-Credentials', true);
     next();
   });
 
