@@ -94,10 +94,6 @@ mongoose.connect(process.env.MONGODBURL,
 app.listen(PORT, () => {
     console.log(`BlogApp is running on port ${PORT}`);
 
-    var request = http.request(options);
-    request.setHeader('Access-Control-Allow-Origin', '*');
-    request.end();
-
 })
 
 
