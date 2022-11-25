@@ -72,7 +72,7 @@ app.use(function(req, res, next){
 
 // * Take 3 : CORS error
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://yoursite.com");
+    res.setHeader("Access-Control-Allow-Origin", "https://pokegotchi-frontend-project-4-general-assembly-sei-6-3tgidmsio");
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
