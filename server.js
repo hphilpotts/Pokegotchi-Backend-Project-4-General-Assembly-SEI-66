@@ -85,7 +85,7 @@ app.use((req, res, next) => {
     next();
   });
 
-// // Mount Routes
+// Mount Routes
 app.use('/', authRouter);
 // app.use('/', trainerRouter);
 app.use('/', userRouter);
